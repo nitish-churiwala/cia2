@@ -1,0 +1,82 @@
+[
+    {
+        "courseId": "C103",
+        "title": "JavaScript for Beginners",
+        "instructor": "Jane Smith",
+        "duration": "15 hours",
+        "rating": 4.7,
+        "category": "Web Development",
+        "price": "$60",
+        "enrolled": "3200"
+    },
+    {
+        "courseId": "C104",
+        "title": "Mastering Python",
+        "instructor": "Emily Johnson",
+        "duration": "20 hours",
+        "rating": 4.9,
+        "category": "Python Programming",
+        "price": "$75",
+        "enrolled": "5400"
+    },
+    {
+        "courseId": "C105",
+        "title": "Advanced Java Programming",
+        "instructor": "Michael Lee",
+        "duration": "18 hours",
+        "rating": 4.6,
+        "category": "Java Programming",
+        "price": "$70",
+        "enrolled": "4100"
+    },
+    {
+        "courseId": "C106",
+        "title": "Full Stack Web Development",
+        "instructor": "David Kim",
+        "duration": "25 hours",
+        "rating": 4.8,
+        "category": "Web Development",
+        "price": "$90",
+        "enrolled": "6200"
+    },
+    {
+        "courseId": "C107",
+        "title": "Data Science with R",
+        "instructor": "Sophia Brown",
+        "duration": "22 hours",
+        "rating": 4.7,
+        "category": "Data Science",
+        "price": "$80",
+        "enrolled": "3000"
+    },
+    {
+        "courseId": "C108",
+        "title": "Machine Learning with Python",
+        "instructor": "James Wilson",
+        "duration": "30 hours",
+        "rating": 4.9,
+        "category": "Machine Learning",
+        "price": "$100",
+        "enrolled": "7500"
+    },
+    {
+        "courseId": "C109",
+        "title": "Introduction to HTML & CSS",
+        "instructor": "Anna Davis",
+        "duration": "8 hours",
+        "rating": 4.4,
+        "category": "Web Development",
+        "price": "$45",
+        "enrolled": "2000"
+    },
+    {
+        "courseId": "C110",
+        "title": "ReactJS Essentials",
+        "instructor": "Chris Martin",
+        "duration": "12 hours",
+        "rating": 4.8,
+        "category": "Web Development",
+        "price": "$65",
+        "enrolled": "3300"
+    }
+]

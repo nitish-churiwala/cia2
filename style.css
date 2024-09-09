@@ -1,0 +1,119 @@
+/* General Styles */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  box-sizing: border-box;
+}
+
+/* Hero Section with Blur Background */
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url("https://cdn.prod.website-files.com/64949e4863d96e26a1da8386/6501b518c0feaa5aa5fac177_63eb30c52d440b14454bd77c_Course-20TN.jpeg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-overlay {
+  background-image: url("https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero.jpg");
+  color: white;
+  text-align: center;
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.btn-hero {
+  background-color: #ff6347;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.btn-hero:hover {
+  background-color: #ff4500;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+  padding: 40px;
+  background-color: #f5f5f5;
+}
+
+/* Search and Sort Controls */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.controls input,
+.controls select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 48%;
+}
+
+/* Course List */
+.course-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.course-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.course-card h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.course-card p {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Pagination */
+#pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.pagination-btn:hover {
+  background-color: #0056b3;
+}
