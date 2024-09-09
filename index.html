@@ -89,10 +89,16 @@
         background-color: #218838;
       }
 
-      #validation-message {
+      .error-message {
         color: red;
         font-size: 0.9em;
-        margin-bottom: 10px;
+        margin-top: 5px;
+      }
+
+      /* Dropdown Option Styling */
+      select option {
+        background-color: #333;
+        color: white;
       }
 
       @media (max-width: 768px) {
@@ -109,41 +115,35 @@
         <div class="form-container">
           <h2>Sign Up</h2>
           <p>Join our Learning community today!</p>
-          <form id="sign-up-form" onsubmit="handleSignUp(event)">
+          <form id="sign-up-form">
             <!-- Full Name -->
             <div class="input-field">
               <input type="text" id="full-name" placeholder="Full Name" required />
+              <div id="full-name-error" class="error-message"></div>
             </div>
 
             <!-- Parents' Name -->
             <div class="input-field">
-              <input
-                type="text"
-                id="parents-name"
-                placeholder="Father's Name"
-                required
-              />
+              <input type="text" id="parents-name" placeholder="Father's Name" required />
+              <div id="parents-name-error" class="error-message"></div>
             </div>
 
             <!-- Phone Number -->
             <div class="input-field">
-              <input
-                type="tel"
-                id="phone-number"
-                placeholder="Phone Number"
-                pattern="[0-9]{10}"
-                required
-              />
+              <input type="tel" id="phone-number" placeholder="Phone Number" required />
+              <div id="phone-number-error" class="error-message"></div>
             </div>
 
             <!-- Date of Birth -->
             <div class="input-field">
               <input type="date" id="dob" placeholder="Date of Birth" required />
+              <div id="dob-error" class="error-message"></div>
             </div>
 
             <!-- Address -->
             <div class="input-field">
               <input type="text" id="address" placeholder="Address" required />
+              <div id="address-error" class="error-message"></div>
             </div>
 
             <!-- Current Qualification -->
@@ -154,26 +154,25 @@
                 <option value="Undergraduate">Undergraduate</option>
                 <option value="Postgraduate">Postgraduate</option>
               </select>
+              <div id="qualification-error" class="error-message"></div>
             </div>
 
             <!-- Username -->
             <div class="input-field">
               <input type="text" id="username" placeholder="Username" required />
+              <div id="username-error" class="error-message"></div>
             </div>
 
             <!-- Email -->
             <div class="input-field">
               <input type="email" id="email" placeholder="Email" required />
+              <div id="email-error" class="error-message"></div>
             </div>
 
             <!-- Password -->
             <div class="input-field">
-              <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                required
-              />
+              <input type="password" id="password" placeholder="Password" required />
+              <div id="password-error" class="error-message"></div>
             </div>
 
             <!-- Confirm Password -->
@@ -184,9 +183,9 @@
                 placeholder="Confirm Password"
                 required
               />
+              <div id="confirm-password-error" class="error-message"></div>
             </div>
 
-            <div id="validation-message"></div>
             <button type="submit" class="btn">Sign Up</button>
           </form>
         </div>
@@ -194,85 +193,130 @@
     </div>
 
     <script>
-      // Function to handle sign up and validation
-      function handleSignUp(event) {
-        event.preventDefault();
-        const fullName = document.getElementById("full-name").value.trim();
-        const parentsName = document.getElementById("parents-name").value.trim();
-        const phoneNumber = document.getElementById("phone-number").value.trim();
-        const dob = document.getElementById("dob").value.trim();
-        const address = document.getElementById("address").value.trim();
-        const username = document.getElementById("username").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-        const confirmPassword = document.getElementById("confirm-password").value;
-        const validationMessage = document.getElementById("validation-message");
+      // Function to validate individual fields on input or blur
+      function validateField(id, errorId, validationFunction) {
+        const field = document.getElementById(id);
+        const errorField = document.getElementById(errorId);
 
-        // Validate Full Name
-        if (fullName === "") {
-          validationMessage.textContent = "Please enter your full name.";
-          return false;
-        }
-
-        // Validate Parents' Name
-        if (parentsName === "") {
-          validationMessage.textContent = "Please enter your father's name.";
-          return false;
-        }
-
-        // Validate phone number
-        const phonePattern = /^[0-9]{10}$/;
-        if (!phonePattern.test(phoneNumber)) {
-          validationMessage.textContent =
-            "Please enter a valid 10-digit phone number.";
-          return false;
-        }
-
-        // Validate Date of Birth
-        const today = new Date();
-        const birthDate = new Date(dob);
-        if (birthDate >= today || dob === "") {
-          validationMessage.textContent = "Please enter a valid date of birth.";
-          return false;
-        }
-
-        // Validate Address
-        if (address === "") {
-          validationMessage.textContent = "Please enter your address.";
-          return false;
-        }
-
-        // Validate Username
-        if (username === "") {
-          validationMessage.textContent = "Please enter a username.";
-          return false;
-        }
-
-        // Validate Email
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
-          validationMessage.textContent = "Please enter a valid email address.";
-          return false;
-        }
-
-        // Validate Password
-        if (password.length < 8) {
-          validationMessage.textContent =
-            "Password must be at least 8 characters long.";
-          return false;
-        }
-
-        // Validate Password Match
-        if (password !== confirmPassword) {
-          validationMessage.textContent = "Passwords do not match.";
-          return false;
-        }
-
-        // Clear validation message and alert success
-        validationMessage.textContent = "";
-        alert("Sign Up Successful! Redirecting to Log In...");
-        toggleForm("signin");
+        field.addEventListener("input", () => validationFunction(field, errorField));
+        field.addEventListener("blur", () => validationFunction(field, errorField));
       }
+
+      // Field validation functions
+      function validateName(field, errorField) {
+        if (field.value.trim() === "") {
+          errorField.textContent = "Please enter your name.";
+        } else {
+          errorField.textContent = "";
+        }
+      }
+
+      function validateUserName(field, errorField) {
+        if (field.value.trim() === "") {
+          errorField.textContent = "Please enter the valid username.";
+        } else {
+          errorField.textContent = "";
+        }
+      }
+
+      function validatePhoneNumber(field, errorField) {
+        const phonePattern = /^[0-9]{10}$/;
+        if (!phonePattern.test(field.value.trim())) {
+          errorField.textContent = "Please enter a valid 10-digit phone number.";
+        } else {
+          errorField.textContent = "";
+        }
+      }
+
+      function validateDOB(field, errorField) {
+        const today = new Date().setHours(0, 0, 0, 0); // Ensure today's date is at midnight
+        const birthDate = new Date(field.value.trim()).setHours(0, 0, 0, 0);
+        if (birthDate >= today || field.value === "") {
+          errorField.textContent = "Please enter a valid date of birth (before today).";
+        } else {
+          errorField.textContent = "";
+        }
+      }
+
+      function validateEmail(field, errorField) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(field.value.trim())) {
+          errorField.textContent = "Please enter a valid email address.";
+        } else {
+          errorField.textContent = "";
+        }
+      }
+
+      function validatePassword(field, errorField) {
+        if (field.value.length < 8) {
+          errorField.textContent = "Password must be at least 8 characters long.";
+        } else {
+          errorField.textContent = "";
+        }
+      }
+
+      function validateConfirmPassword(field, errorField) {
+        const password = document.getElementById("password").value;
+        if (field.value !== password) {
+          errorField.textContent = "Passwords do not match.";
+        } else {
+          errorField.textContent = "";
+        }
+      }
+
+      // Attach event listeners for validation
+      document.addEventListener("DOMContentLoaded", () => {
+        validateField("full-name", "full-name-error", validateName);
+        validateField("parents-name", "parents-name-error", validateName);
+        validateField("phone-number", "phone-number-error", validatePhoneNumber);
+        validateField("dob", "dob-error", validateDOB);
+        validateField("email", "email-error", validateEmail);
+        validateField("password", "password-error", validatePassword);
+        validateField("confirm-password", "confirm-password-error", validateConfirmPassword);
+      });
+
+      // Handle form submission with AJAX
+      document.getElementById("sign-up-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Perform field validation before making AJAX request
+        const fields = [
+          "full-name",
+          "parents-name",
+          "phone-number",
+          "dob",
+          "address",
+          "qualification",
+          "username",
+          "email",
+          "password",
+          "confirm-password",
+        ];
+
+        let isValid = true;
+
+        fields.forEach((field) => {
+          const inputField = document.getElementById(field);
+          if (inputField.nextElementSibling.textContent !== "") {
+            isValid = false;
+          }
+        });
+
+        if (!isValid) {
+          alert("Please correct the highlighted errors.");
+          return;
+        }
+
+        // Simulate an AJAX request
+        const formData = new FormData(this);
+        alert("Sign Up Successful! Redirecting to Log In...");    
+      });
+
+      // Disable future dates for the DOB field
+      const dobInput = document.getElementById('dob');
+      const today = new Date().toISOString().split('T')[0];
+      dobInput.setAttribute('max', today);
+
     </script>
   </body>
 </html>

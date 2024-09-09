@@ -1,5 +1,25 @@
 [
     {
+        "courseId": "C101",
+        "title": "Introduction to Web Development",
+        "instructor": "John Doe",
+        "duration": "10 hours",
+        "rating": 4.5,
+        "category": "Web Development",
+        "price": "$50",
+        "enrolled": "2500"
+    },
+    {
+        "courseId": "C102",
+        "title": "Introduction to C",
+        "instructor": "Doe",
+        "duration": "12 hours",
+        "rating": 4.8,
+        "category": "C Development",
+        "price": "$10",
+        "enrolled": "2000"
+    },
+    {
         "courseId": "C103",
         "title": "JavaScript for Beginners",
         "instructor": "Jane Smith",

@@ -17,24 +17,41 @@
   </div>
 
   <div class="content-wrapper">
-    <!-- Search and Sort Controls -->
-    <section class="controls">
-      <input type="text" id="search" placeholder="Search courses..." oninput="filterCourses()">
-      <select id="sort" onchange="sortCourses()">
-        <option value="name">Sort by Name</option>
-        <option value="duration">Sort by Duration</option>
-      </select>
+    <!-- Section 1: Courses Offered by Us -->
+    <section>
+      <h2>Courses Offered by Us</h2>
+      <div class="controls">
+        <input type="text" id="search-us" placeholder="Search courses..." oninput="filterCourses('us')">
+        <select id="sort-us" onchange="sortCourses('us')">
+          <option value="name">Sort by Name</option>
+          <option value="duration">Sort by Duration</option>
+        </select>
+      </div>
+      <section id="course-list-us" class="course-list"></section>
+      <div id="pagination-controls-us">
+        <button class="pagination-btn" onclick="previousPage('us')">Previous</button>
+        <span id="current-page-us">1</span>
+        <button class="pagination-btn" onclick="nextPage('us')">Next</button>
+      </div>
     </section>
 
-    <!-- Course List -->
-    <section id="course-list" class="course-list"></section>
-
-    <!-- Pagination Controls -->
-    <div id="pagination-controls">
-      <button class="pagination-btn" onclick="previousPage()">Previous</button>
-      <span id="current-page">1</span>
-      <button class="pagination-btn" onclick="nextPage()">Next</button>
-    </div>
+    <!-- Section 2: Courses Offered by Other Platforms -->
+    <section>
+      <h2>Courses Offered by Other Platforms</h2>
+      <div class="controls">
+        <input type="text" id="search-other" placeholder="Search courses..." oninput="filterCourses('other')">
+        <select id="sort-other" onchange="sortCourses('other')">
+          <option value="name">Sort by Name</option>
+          <option value="duration">Sort by Duration</option>
+        </select>
+      </div>
+      <section id="course-list-other" class="course-list"></section>
+      <div id="pagination-controls-other">
+        <button class="pagination-btn" onclick="previousPage('other')">Previous</button>
+        <span id="current-page-other">1</span>
+        <button class="pagination-btn" onclick="nextPage('other')">Next</button>
+      </div>
+    </section>
   </div>
 
   <script src="courseScript.js"></script>
